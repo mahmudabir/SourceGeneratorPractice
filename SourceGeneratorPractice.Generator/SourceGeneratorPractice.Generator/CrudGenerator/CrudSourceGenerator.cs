@@ -120,10 +120,11 @@ public class CrudSourceGenerator : ISourceGenerator
     {
         var splitValues = entityType.Split('.').ToList();
         splitValues.RemoveRange(splitValues.Count - 1, 1);
+        var entityAndDtoNamespace = string.Join(".", splitValues);
         
         return $@"
 using System.Collections.Generic;
-using {string.Join(".", splitValues)};
+using {entityAndDtoNamespace};
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 
@@ -169,12 +170,13 @@ namespace Generated
 
     private string GenerateService(string dtoType, string entityType, string keyType)
     {
-        var splitValues = dtoType.Split('.').ToList();
+        var splitValues = entityType.Split('.').ToList();
         splitValues.RemoveRange(splitValues.Count - 1, 1);
+        var entityAndDtoNamespace = string.Join(".", splitValues);
 
         return $@"
 using System.Linq;
-using {string.Join(".", splitValues)};
+using {entityAndDtoNamespace};
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -221,13 +223,14 @@ namespace Generated
 
     private string GenerateController(string createRequestType, string updateRequestType, string dtoType, string entityType, string keyType, string route)
     {
-        var splitValues = dtoType.Split('.').ToList();
+        var splitValues = entityType.Split('.').ToList();
         splitValues.RemoveRange(splitValues.Count - 1, 1);
+        var entityAndDtoNamespace = string.Join(".", splitValues);
         
         return $@"
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using {string.Join(".", splitValues)};
+using {entityAndDtoNamespace};
 using Microsoft.AspNetCore.Mvc;
 
 namespace Generated

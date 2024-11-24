@@ -19,12 +19,12 @@ namespace SourceGeneratorPractice.Generator.Sample.CrudGeneration
                 })
                 .AddServices(options =>
                 {
-                    options.AddService<SourceGeneratorPractice.Generator.Sample.Models.PersonViewModel, Person, int>();
+                    options.AddService<PersonViewModel, Person, int>();
                     // options.AddService<StudentViewModel, Student, Guid>();
                 })
                 .AddControllers(options =>
                 {
-                    options.AddController<SourceGeneratorPractice.Generator.Sample.Models.PersonViewModel, SourceGeneratorPractice.Generator.Sample.Models.PersonViewModel, SourceGeneratorPractice.Generator.Sample.Models.PersonViewModel, Person, int>("api/persons");
+                    options.AddController<PersonViewModel, PersonViewModel, PersonViewModel, Person, int>("api/persons");
                     // options.AddController<StudentViewModel, StudentViewModel, StudentViewModel, Student, Guid>("api/students");
                 });
         }
